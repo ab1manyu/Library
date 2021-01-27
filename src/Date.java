@@ -21,7 +21,7 @@ public class Date {
     }
     //return today’s date
     public Date() {
-
+        System.out.println("Hello");
     }
 
     public boolean isValid() {
