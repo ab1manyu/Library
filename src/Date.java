@@ -21,7 +21,10 @@ public class Date {
     }
     //return today’s date
     public Date() {
-
+        Calendar now = Calendar.getInstance();
+        this.year = now.get(Calendar.YEAR);
+        this.month = now.get(Calendar.MONTH) + 1;
+        this.day = now.get(Calendar.DAY_OF_MONTH);
     }
 
     public boolean isValid() {
@@ -38,7 +41,9 @@ public class Date {
     }
 
     public static void main(String[] args) {
-        Date d = new Date("03/20/1999");
+        Calendar now = Calendar.getInstance();
+        Date d = new Date();
         System.out.println(d);
+
     }
 }
