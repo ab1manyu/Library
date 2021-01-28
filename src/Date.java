@@ -21,13 +21,14 @@ public class Date {
     }
     //return today’s date
     public Date() {
-        Calendar now = Calendar.getInstance();
-        this.year = now.get(Calendar.YEAR);
-        this.month = now.get(Calendar.MONTH) + 1;
-        this.day = now.get(Calendar.DAY_OF_MONTH);
+        Calendar rightNow = Calendar.getInstance();
+        this.year = rightNow.get(Calendar.YEAR);
+        this.month = rightNow.get(Calendar.MONTH) + 1;
+        this.day = rightNow.get(Calendar.DAY_OF_MONTH);
     }
 
     public boolean isValid() {
+        boolean isLeapYear = this.isLeapYear();
         return true;
     }
 
@@ -36,14 +37,41 @@ public class Date {
     }
 
     //check if year is a leap year
-    public boolean isLeapYear(int year){
-        return false;
+    private boolean isLeapYear(){
+        if(this.year % 4 == 0){
+            if(this.year % 100 == 0){
+                return this.year % 400 == 0;
+            }else{
+                return true;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    private boolean greaterThanCurrDate(){
+        Date currDate = new Date();
+        if(this.year > currDate.year){
+            return true;
+        }else{
+            if(this.year == currDate.year){
+                if(this.month > currDate.month){
+                    return true;
+                }else{
+                    if (this.month == currDate.month){
+                        return this.day > currDate.day;
+                    }else{
+                        return false;
+                    }
+                }
+            }else{
+                return false;
+            }
+        }
     }
 
     public static void main(String[] args) {
-        Calendar now = Calendar.getInstance();
-        Date d = new Date();
-        System.out.println(d);
+
 
     }
 }
