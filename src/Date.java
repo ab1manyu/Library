@@ -70,8 +70,46 @@ public class Date {
         }
     }
 
-    public static void main(String[] args) {
+    //checks if the mm/dd is valid
+    private boolean dayValidator(){
+        int month = this.month;
+        int day = this.day;
+        boolean day31 = false;
 
+        if(day>31 || day<1)
+            return false;
+
+        switch(month){
+            case Calendar.JANUARY+1:
+            case Calendar.MARCH+1:
+            case Calendar.MAY+1:
+            case Calendar.OCTOBER+1:
+            case Calendar.JULY+1:
+            case Calendar.AUGUST+1:
+            case Calendar.DECEMBER+1:
+                day31=true;
+                break;
+
+            case Calendar.FEBRUARY+1:
+                if(this.day>=30) //check if day is greater than 30
+                    return false;
+                if(this.isLeapYear() && this.day==29)
+                    return true;
+                return this.day < 29;
+
+            case Calendar.APRIL+1:
+            case Calendar.JUNE+1:
+            case Calendar.SEPTEMBER+1:
+            case Calendar.NOVEMBER+1:
+                break;
+            //case that the month is just not one of the above (1-12)
+            default: return false;
+        }
+
+        return day31 || this.day != 31;
+    }
+
+    public static void main(String[] args) {
 
     }
 }
