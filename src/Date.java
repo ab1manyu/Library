@@ -6,6 +6,12 @@ public class Date {
     private int month;
     private int day;
 
+    public static final int QUADRENNIAL = 4;
+    public static final int CENTENNIAL = 100;
+    public static final int QUATERCENTENNIAL = 400;
+    public static final int FEBRUARYLEAP = 29;
+    public static final int MONTHEND = 31;
+
     //taking mm/dd/yyyy and create a Date object{ }
     public Date(String date) {
         int i = 0; //Keeps track of the iterations
@@ -38,9 +44,9 @@ public class Date {
 
     //check if year is a leap year
     private boolean isLeapYear(){
-        if(this.year % 4 == 0){
-            if(this.year % 100 == 0){
-                return this.year % 400 == 0;
+        if(this.year % QUADRENNIAL == 0){
+            if(this.year % CENTENNIAL == 0){
+                return this.year % QUATERCENTENNIAL == 0;
             }else{
                 return true;
             }
@@ -76,7 +82,7 @@ public class Date {
         int day = this.day;
         boolean day31 = false;
 
-        if(day>31 || day<1)
+        if(day>MONTHEND || day<1)
             return false;
 
         switch(month){
@@ -91,11 +97,11 @@ public class Date {
                 break;
 
             case Calendar.FEBRUARY+1:
-                if(this.day>=30) //check if day is greater than 30
+                if(this.day>=MONTHEND-1) //in the case of FEB the day cannot be 30 or greater
                     return false;
-                if(this.isLeapYear() && this.day==29)
+                if(this.isLeapYear() && this.day==FEBRUARYLEAP)
                     return true;
-                return this.day < 29;
+                return this.day < FEBRUARYLEAP;
 
             case Calendar.APRIL+1:
             case Calendar.JUNE+1:
@@ -106,7 +112,7 @@ public class Date {
             default: return false;
         }
 
-        return day31 || this.day != 31;
+        return day31 || this.day != MONTHEND;
     }
 
     public static void main(String[] args) {
