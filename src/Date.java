@@ -6,13 +6,15 @@ public class Date {
     private int month;
     private int day;
 
+    //constants
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
     public static final int FEBRUARYLEAP = 29;
     public static final int MONTHEND = 31;
+    public static final int OLDBOOK = 1900;
 
-    //taking mm/dd/yyyy and create a Date object{ }
+    //taking mm/dd/yyyy and create a Date object {}
     public Date(String date) {
         int i = 0; //Keeps track of the iterations
         StringTokenizer st = new StringTokenizer(date, "/");
@@ -34,15 +36,14 @@ public class Date {
     }
 
     public boolean isValid() {
-        boolean isLeapYear = this.isLeapYear();
-        return true;
+        boolean lessThanCurrDate = !this.greaterThanCurrDate();
+        boolean dayValidator = this.dayValidator();
+        boolean publishedAfter1990 =  this.year > 1990;
+
+        return lessThanCurrDate && dayValidator && publishedAfter1990;
     }
 
-    public String toString(){
-        return this.month + "/" + this.day + "/" + this.year;
-    }
-
-    //check if year is a leap year
+    //checks if year is a leap year
     private boolean isLeapYear(){
         if(this.year % QUADRENNIAL == 0){
             if(this.year % CENTENNIAL == 0){
@@ -52,27 +53,6 @@ public class Date {
             }
         }else{
             return false;
-        }
-    }
-
-    private boolean greaterThanCurrDate(){
-        Date currDate = new Date();
-        if(this.year > currDate.year){
-            return true;
-        }else{
-            if(this.year == currDate.year){
-                if(this.month > currDate.month){
-                    return true;
-                }else{
-                    if (this.month == currDate.month){
-                        return this.day > currDate.day;
-                    }else{
-                        return false;
-                    }
-                }
-            }else{
-                return false;
-            }
         }
     }
 
@@ -114,7 +94,36 @@ public class Date {
         return day31 || this.day != MONTHEND;
     }
 
-    public static void main(String[] args) {
+    //checks if the date of book is set past the current date
+    private boolean greaterThanCurrDate(){
+        Date currDate = new Date();
+        if(this.year > currDate.year){
+            return true;
+        }else{
+            if(this.year == currDate.year){
+                if(this.month > currDate.month){
+                    return true;
+                }else{
+                    if (this.month == currDate.month){
+                        return this.day > currDate.day;
+                    }else{
+                        return false;
+                    }
+                }
+            }else{
+                return false;
+            }
+        }
+    }
 
+    public String toString(){
+        return this.month + "/" + this.day + "/" + this.year;
+    }
+
+    public static void main(String[] args) {
+        Date date = new Date();
+        Date anotherDate = new Date("02/1/2021");
+
+        System.out.println("The date "+anotherDate.toString()+" is: "+anotherDate.isValid());
     }
 }
