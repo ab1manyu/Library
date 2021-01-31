@@ -19,6 +19,18 @@ public class Book {
 
     }
 
+    public Book(){
+        this.number = Book.serialNumber;
+        this.name = "test";
+        this.checkedOut = true;
+        this.datePublished = new Date();
+
+        int intSerialNumber = Integer.parseInt(serialNumber);
+        intSerialNumber = intSerialNumber + 1;
+        Book.serialNumber = Integer.toString(intSerialNumber);
+
+    }
+
     @Override
     public boolean equals(Object obj){
         Book book = (Book) obj;
@@ -35,6 +47,15 @@ public class Book {
         }
         return "Book#" + this.number + "::" + this.name + "::" + this.datePublished.toString() + "::" + status;
     }
+
+    public void toggleStatus(){
+        this.checkedOut = !this.checkedOut;
+    }
+
+    public boolean getStatus(){
+        return this.checkedOut;
+    }
+
 
     public static void main(String[] args) {
         Book b1 = new Book("Hi", true, new Date());
