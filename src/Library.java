@@ -89,7 +89,6 @@ public class Library {
     public void printByDate() {
         this.sortByDate();
         this.print();
-
     }
 
     private void sortByDate(){
@@ -137,9 +136,9 @@ public class Library {
     public static void main(String[] args) {
         Library l = new Library();
 
-        Book b1 = new Book("homies in the cotton field", false, new Date("09/29/2020"));
+        Book b1 = new Book("homies in the cotton field", true, new Date("09/29/2020"));
         Book b2 = new Book("someone in the cotton field", false, new Date("09/28/2020"));
-        Book b3 = new Book("titans in the cotton field", false, new Date("09/27/2020"));
+        Book b3 = new Book("titans in the cotton field", true, new Date("09/27/2020"));
         Book b4 = new Book("roxy in the cotton field", false, new Date("09/26/2020"));
 
         l.add(b1);
@@ -148,6 +147,8 @@ public class Library {
         l.add(b4);
 
         l.printByDate();
+        System.out.println();
+        l.printByNumber();
 
     }
 }

@@ -37,6 +37,19 @@ public class Book {
         return this.number.equals(book.number);
     }
 
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCheckedOut(boolean checkedOut) {
+        this.checkedOut = checkedOut;
+    }
+
+    public void setDatePublished(String datePublished) {
+        this.datePublished = new Date(datePublished);
+    }
+
     public void setSerialNumber(int serialNumber){
         this.number =  serialNumber+"";
     }
