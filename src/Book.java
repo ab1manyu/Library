@@ -37,6 +37,10 @@ public class Book {
         return this.number.equals(book.number);
     }
 
+    public void setSerialNumber(int serialNumber){
+        this.number =  serialNumber+"";
+    }
+
     @Override
     public String toString() {
         String status;
@@ -54,6 +58,10 @@ public class Book {
 
     public boolean getStatus(){
         return this.checkedOut;
+    }
+
+    public int getSerialNumber(){
+        return Integer.parseInt(this.number);
     }
 
 

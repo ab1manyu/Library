@@ -80,24 +80,64 @@ public class Library {
     public void print() {
         Book[] currentBag = this.books;
         for (int i = 0; i < currentBag.length; i++){
-            System.out.println(currentBag[i]);
+            if(currentBag[i]!=null)
+                System.out.println(currentBag[i]);
         }
     }
     public void printByDate() {
 
     } //print the list of books by datePublished (ascending)
-    public void printByNumber() {
 
+    public void printByNumber() {
+        this.sortByNumber();
+        Book[] currentBag = this.books;
+        print();
     } //print the list of books by number (ascending)
+
+    //printing by serial number
+    public void sortByNumber() {
+        int n  = this.books.length;
+
+        for (int i = 0; i < n-1; i++) {
+            // Find the minimum element in unsorted array
+
+            int min = i;
+            for (int j = i+1; j < n; j++) {
+                if (this.books[j]!=null && this.books[min]!=null) {
+                    if (this.books[j].getSerialNumber() < this.books[min].getSerialNumber())
+                        min = j;
+                }
+            }
+
+            Book temp = this.books[min];
+            this.books[min] = this.books[i];
+            this.books[i] = temp;
+        }
+    }
 
     public static void main(String[] args) {
         Library l = new Library();
-        for (int i = 0; i < 9; i++){
-           l.add(new Book());
+//        for (int i = 0; i < 9; i++){
+//           l.add(new Book());
+//        }
 
-        }
-        for (int i = 0; i < l.books.length; i++){
-            System.out.println(l.books[i]);
-        }
+        Book b1 = new Book("homies in the cotton field", false, new Date("09/11/2001"));
+        Book b2 = new Book("someone in the cotton field", false, new Date("09/11/2001"));
+        Book b3 = new Book("titans in the cotton field", false, new Date("09/11/2001"));
+        Book b4 = new Book("roxy in the cotton field", false, new Date("09/11/2001"));
+
+        b1.setSerialNumber(10006);
+
+        l.add(b1);
+        l.add(b2);
+        l.add(b3);
+        l.add(b4);
+
+
+
+        l.printByNumber();
+        l.remove(b3);
+        System.out.println();
+        l.printByNumber();
     }
 }
