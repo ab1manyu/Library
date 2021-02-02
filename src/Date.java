@@ -38,7 +38,7 @@ public class Date {
     public boolean isValid() {
         boolean lessThanCurrDate = !this.greaterThanCurrDate();
         boolean dayValidator = this.dayValidator();
-        boolean publishedAfter1990 =  this.year > 1990;
+        boolean publishedAfter1990 =  this.year > OLDBOOK;
 
         return lessThanCurrDate && dayValidator && publishedAfter1990;
     }
