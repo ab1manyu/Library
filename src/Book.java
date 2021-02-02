@@ -52,6 +52,29 @@ public class Book {
         return "Book#" + this.number + "::" + this.name + "::" + this.datePublished.toString() + "::" + status;
     }
 
+    public boolean compareDates(Book book){
+        Date book1Date = this.datePublished;
+        Date book2Date = book.datePublished;
+
+        if(book1Date.getYear() < book2Date.getYear()){
+            return true;
+        }else{
+            if(book1Date.getYear() == book2Date.getYear()){
+                if(book1Date.getMonth() < book2Date.getMonth()){
+                    return true;
+                }else{
+                    if (book1Date.getMonth() == book2Date.getMonth()){
+                        return book1Date.getDay() < book2Date.getDay();
+                    }else{
+                        return false;
+                    }
+                }
+            }else{
+                return false;
+            }
+        }
+    }
+
     public void toggleStatus(){
         this.checkedOut = !this.checkedOut;
     }

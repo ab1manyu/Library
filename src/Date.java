@@ -35,6 +35,18 @@ public class Date {
         this.day = rightNow.get(Calendar.DAY_OF_MONTH);
     }
 
+    public int getYear(){
+        return this.year;
+    }
+
+    public int getMonth(){
+        return this.month;
+    }
+
+    public int getDay(){
+        return this.day;
+    }
+
     public boolean isValid() {
         boolean lessThanCurrDate = !this.greaterThanCurrDate();
         boolean dayValidator = this.dayValidator();
