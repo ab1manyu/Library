@@ -84,31 +84,50 @@ public class Library {
                 System.out.println(currentBag[i]);
         }
     }
+
+    //print the list of books by datePublished (ascending)
     public void printByDate() {
+        this.sortByDate();
+        this.print();
 
-    } //print the list of books by datePublished (ascending)
+    }
 
-    public void printByNumber() {
-        this.sortByNumber();
-        Book[] currentBag = this.books;
-        print();
-    } //print the list of books by number (ascending)
+    private void sortByDate(){
+        int arrLength = this.books.length;
+        for (int i = 0; i < arrLength-1; i++) {
+            int currentMin = i;
+            for (int j = i+1; j < arrLength; j++) {
+                if (this.books[j] != null && this.books[currentMin] != null) {
+                    if (this.books[j].compareDates(this.books[currentMin])){
+                        currentMin = j;
+                    }
 
-    //printing by serial number
-    public void sortByNumber() {
-        int n  = this.books.length;
-
-        for (int i = 0; i < n-1; i++) {
-            // Find the minimum element in unsorted array
-
-            int min = i;
-            for (int j = i+1; j < n; j++) {
-                if (this.books[j]!=null && this.books[min]!=null) {
-                    if (this.books[j].getSerialNumber() < this.books[min].getSerialNumber())
-                        min = j;
                 }
             }
+            Book temp = this.books[currentMin];
+            this.books[currentMin] = this.books[i];
+            this.books[i] = temp;
+        }
+    }
 
+    //print the list of books by number (ascending)
+    public void printByNumber() {
+        this.sortByNumber();
+        this.print();
+    }
+
+    //printing by serial number
+    private void sortByNumber() {
+        int arrLength = this.books.length;
+        for (int i = 0; i < arrLength-1; i++) {
+            int min = i;
+            for (int j = i+1; j < arrLength; j++) {
+                if (this.books[j] != null && this.books[min] != null) {
+                    if (this.books[j].getSerialNumber() < this.books[min].getSerialNumber()){
+                        min = j;
+                    }
+                }
+            }
             Book temp = this.books[min];
             this.books[min] = this.books[i];
             this.books[i] = temp;
@@ -117,27 +136,18 @@ public class Library {
 
     public static void main(String[] args) {
         Library l = new Library();
-//        for (int i = 0; i < 9; i++){
-//           l.add(new Book());
-//        }
 
-        Book b1 = new Book("homies in the cotton field", false, new Date("09/11/2001"));
-        Book b2 = new Book("someone in the cotton field", false, new Date("09/11/2001"));
-        Book b3 = new Book("titans in the cotton field", false, new Date("09/11/2001"));
-        Book b4 = new Book("roxy in the cotton field", false, new Date("09/11/2001"));
-
-        b1.setSerialNumber(10006);
+        Book b1 = new Book("homies in the cotton field", false, new Date("09/29/2020"));
+        Book b2 = new Book("someone in the cotton field", false, new Date("09/28/2020"));
+        Book b3 = new Book("titans in the cotton field", false, new Date("09/27/2020"));
+        Book b4 = new Book("roxy in the cotton field", false, new Date("09/26/2020"));
 
         l.add(b1);
         l.add(b2);
         l.add(b3);
         l.add(b4);
 
+        l.printByDate();
 
-
-        l.printByNumber();
-        l.remove(b3);
-        System.out.println();
-        l.printByNumber();
     }
 }
