@@ -86,7 +86,7 @@ public class Library {
     public Book findBook(String serialNumber) {
         Book[] currentBag = this.books;
         for(int i = 0; i < currentBag.length; i++){
-            if(Integer.parseInt(serialNumber) == currentBag[i].getSerialNumber()){
+            if(currentBag[i] != null && (Integer.parseInt(serialNumber) == currentBag[i].getSerialNumber())){
                 return currentBag[i];
             }
         }
