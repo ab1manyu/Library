@@ -20,6 +20,10 @@ public class Library {
         return -1;
     }
 
+    public int getNumBooks(){
+        return  numBooks;
+    }
+
     // helper method to grow the capacity by 4
     private void grow() {
         Book[] oldBag = this.books;
@@ -37,6 +41,7 @@ public class Library {
         for (int i = 0; i < currentBag.length; i++){
             if(currentBag[i] == null){
                 currentBag[i] = book;
+                numBooks++;
                 placed = true;
                 break;
             }
@@ -54,6 +59,7 @@ public class Library {
             return false;
         }
         currentBag[result] = null;
+        numBooks--;
         return true;
 
     }
@@ -67,6 +73,7 @@ public class Library {
         return true;
 
     }
+
     public boolean returns(Book book) {
         boolean checkedOut = book.getStatus();
         if(checkedOut){
@@ -74,6 +81,17 @@ public class Library {
             return true;
         }
         return false;
+    }
+
+    public Book findBook(String serialNumber) {
+        Book[] currentBag = this.books;
+        for(int i = 0; i < currentBag.length; i++){
+            if(Integer.parseInt(serialNumber) == currentBag[i].getSerialNumber()){
+                return currentBag[i];
+            }
+        }
+
+        return null;
     }
 
     //print the list of books in the bag
@@ -136,10 +154,10 @@ public class Library {
     public static void main(String[] args) {
         Library l = new Library();
 
-        Book b1 = new Book("homies in the cotton field", true, new Date("09/29/2020"));
-        Book b2 = new Book("someone in the cotton field", false, new Date("09/28/2020"));
-        Book b3 = new Book("titans in the cotton field", true, new Date("09/27/2020"));
-        Book b4 = new Book("roxy in the cotton field", false, new Date("09/26/2020"));
+        Book b1 = new Book("homies in the cotton field", new Date("09/29/2020"));
+        Book b2 = new Book("someone in the cotton field", new Date("09/28/2020"));
+        Book b3 = new Book("titans in the cotton field", new Date("09/27/2020"));
+        Book b4 = new Book("roxy in the cotton field", new Date("09/26/2020"));
 
         l.add(b1);
         l.add(b2);

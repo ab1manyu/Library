@@ -7,10 +7,10 @@ public class Book {
 
     private static String serialNumber = "10001";
 
-    public Book(String name, boolean checkedOut, Date datePublished){
+    public Book(String name, Date datePublished){
         this.number = Book.serialNumber;
         this.name = name;
-        this.checkedOut = checkedOut;
+        this.checkedOut = false;
         this.datePublished = datePublished;
 
         int intSerialNumber = Integer.parseInt(serialNumber);
@@ -102,9 +102,9 @@ public class Book {
 
 
     public static void main(String[] args) {
-        Book b1 = new Book("Hi", true, new Date());
+        Book b1 = new Book("Hi", new Date());
         System.out.println(b1);
-        Book b2 = new Book("Bye", true, new Date());
+        Book b2 = new Book("Bye", new Date());
         System.out.println(b2);
 
     }
