@@ -1,14 +1,27 @@
+/**
+ * The Library class stores a list of Books in an array and provides functions to add,
+ * remove, checkout, and return.
+ * Other functions include printing list in order by date / serial number. Also there are
+ * helper methods that are referenced throughout the Kiosk class.
+ * @author  Abimanyu Ananthu, Ashish Shenoy
+ */
 public class Library {
     public Book[] books; // array-based implementation of the bag data structure
     private int numBooks; // the number of books currently in the bag
 
-    //default constructor to create an empty bag
+    /**
+     * Creates a Library and starts off with memory to store 4 books.
+     */
     public Library() {
         this.books = new Book[4];
         this.numBooks = 0;
     }
 
-    // helper method to find a book in the bag
+    /**
+     * A helper method to check to see and find a book in the library.
+     * @param book the Book we are looking for.
+     * @return index of the book if found, otherwise return -1 if the book is not in the library.
+     */
     private int find(Book book) {
         Book[] currentBag = this.books;
         for(int i = 0; i < currentBag.length; i++){
@@ -20,11 +33,18 @@ public class Library {
         return -1;
     }
 
+    /**
+     * A getter method to return the number of books currently within the library.
+     * @return number of books in the library
+     */
     public int getNumBooks(){
         return  numBooks;
     }
 
-    // helper method to grow the capacity by 4
+    /**
+     * A helper method to grow the library by 4 indexes once the library is full.
+     * A library always starts with space to store 4 books and expands as more books are added to the library.
+     */
     private void grow() {
         Book[] oldBag = this.books;
         int newLength = oldBag.length + 4;
@@ -35,6 +55,10 @@ public class Library {
         this.books = newBag;
     }
 
+    /**
+     * Method to add a specified book to the library.
+     * @param book the Book we are adding to the library.
+     */
     public void add(Book book) {
         Book[] currentBag = this.books;
         boolean placed = false;
@@ -52,6 +76,12 @@ public class Library {
         }
     }
 
+    /**
+     * Method to remove a specified book to the library.
+     * @param book the Book we are removing to the library.
+     * @return returns true if the book is removed, otherwise false in the case the book is not able to be
+     * removed because it is not in the library.
+     */
     public boolean remove(Book book) {
         Book[] currentBag = this.books;
         int result = this.find(book);
@@ -61,8 +91,14 @@ public class Library {
         currentBag[result] = null;
         numBooks--;
         return true;
-
     }
+
+    /**
+     * Method to check out a specified book to the library.
+     * @param book the Book we are checking out to the library.
+     * @return returns true if the book is has not been checked out, otherwise false in the case it has
+     * already been checked out because you cannot check out a checked out book.
+     */
     public boolean checkOut(Book book) {
         boolean checkedOut = book.getStatus();
         if(checkedOut){
@@ -74,6 +110,12 @@ public class Library {
 
     }
 
+    /**
+     * Method to return a specified book to the library.
+     * @param book the Book we are returning back to the library.
+     * @return returns true if the book is has been checked out, otherwise false in the case it has
+     * not been checked out because you cannot check out a book that has been returned.
+     */
     public boolean returns(Book book) {
         boolean checkedOut = book.getStatus();
         if(checkedOut){
@@ -83,32 +125,53 @@ public class Library {
         return false;
     }
 
+    /**
+     * Helper method to find a specified book within the library.
+     * This method is used to identify a book that has to be removed, checked out, or returned.
+     * @param serialNumber the serial number of the book is the way to identify the book.
+     * @return returns the book if its serial number is found within the library, otherwise returns null.
+     */
     public Book findBook(String serialNumber) {
         Book[] currentBag = this.books;
-        for(int i = 0; i < currentBag.length; i++){
-            if(currentBag[i] != null && (Integer.parseInt(serialNumber) == currentBag[i].getSerialNumber())){
-                return currentBag[i];
+        for (Book book : currentBag) {
+            if (book != null && (Integer.parseInt(serialNumber) == book.getSerialNumber())) {
+                return book;
             }
         }
 
         return null;
     }
 
-    //print the list of books in the bag
+    /**
+     * Method to print all the books in the library.
+     */
     public void print() {
         Book[] currentBag = this.books;
-        for (int i = 0; i < currentBag.length; i++){
-            if(currentBag[i]!=null)
-                System.out.println(currentBag[i]);
+        for (Book book : currentBag) {
+            if (book != null)
+                System.out.println(book);
         }
     }
 
-    //print the list of books by datePublished (ascending)
+    /**
+     * Method to print all the books in the library, in ascending date order.
+     */
     public void printByDate() {
         this.sortByDate();
         this.print();
     }
 
+    /**
+     * Method to print all the books in the library, in ascending serial number order.
+     */
+    public void printByNumber() {
+        this.sortByNumber();
+        this.print();
+    }
+
+    /**
+     * Helper method to sort the library in ascending date order, using selection sort.
+     */
     private void sortByDate(){
         int arrLength = this.books.length;
         for (int i = 0; i < arrLength-1; i++) {
@@ -127,13 +190,9 @@ public class Library {
         }
     }
 
-    //print the list of books by number (ascending)
-    public void printByNumber() {
-        this.sortByNumber();
-        this.print();
-    }
-
-    //printing by serial number
+    /**
+     * Helper method to sort the library in ascending serial number order, using selection sort.
+     */
     private void sortByNumber() {
         int arrLength = this.books.length;
         for (int i = 0; i < arrLength-1; i++) {
@@ -154,10 +213,10 @@ public class Library {
     public static void main(String[] args) {
         Library l = new Library();
 
-        Book b1 = new Book("homies in the cotton field", new Date("09/29/2020"));
-        Book b2 = new Book("someone in the cotton field", new Date("09/28/2020"));
-        Book b3 = new Book("titans in the cotton field", new Date("09/27/2020"));
-        Book b4 = new Book("roxy in the cotton field", new Date("09/26/2020"));
+        Book b1 = new Book("The Bible", new Date("09/29/2020"));
+        Book b2 = new Book("Quran", new Date("09/28/2020"));
+        Book b3 = new Book("Mahabharata", new Date("09/27/2020"));
+        Book b4 = new Book("Bhagavad Gita", new Date("09/26/2020"));
 
         l.add(b1);
         l.add(b2);
