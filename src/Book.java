@@ -1,3 +1,10 @@
+/**
+ * A class that stores information about a single book.
+ * This information includes a serial number, the name of
+ the book, check out status, and the date its been published.
+ * @author Abimanyu Ananthu, Ashish Shenoy
+ */
+
 public class Book {
 
     private String number; //a 5-digit serial number unique to the book
@@ -6,6 +13,16 @@ public class Book {
     private Date datePublished;
 
     private static String serialNumber = "10001";
+
+
+    /**
+     * Constructor that creates an instance of the book class.
+     * Upon instantiation, checkedOut and serialNumber are
+     * automatically assigned their respective values
+     *
+     * @param name - name of the book
+     * @param datePublished - Date object showing the books publish date
+     */
 
     public Book(String name, Date datePublished){
         this.number = Book.serialNumber;
@@ -19,17 +36,14 @@ public class Book {
 
     }
 
-    public Book(){
-        this.number = Book.serialNumber;
-        this.name = "test";
-        this.checkedOut = true;
-        this.datePublished = new Date();
-
-        int intSerialNumber = Integer.parseInt(serialNumber);
-        intSerialNumber = intSerialNumber + 1;
-        Book.serialNumber = Integer.toString(intSerialNumber);
-
-    }
+    /**
+     * Compares two books' serial number and returns either true
+     * or false depending on the result.
+     *
+     * @param obj
+     * @return true if the books have the same serial number
+     *         false otherwise
+     */
 
     @Override
     public boolean equals(Object obj){
@@ -37,22 +51,12 @@ public class Book {
         return this.number.equals(book.number);
     }
 
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCheckedOut(boolean checkedOut) {
-        this.checkedOut = checkedOut;
-    }
-
-    public void setDatePublished(String datePublished) {
-        this.datePublished = new Date(datePublished);
-    }
-
-    public void setSerialNumber(int serialNumber){
-        this.number =  serialNumber+"";
-    }
+    /**
+     * Prints out all the information about the book in
+     * the required format
+     *
+     * @return String containing the books information
+     */
 
     @Override
     public String toString() {
@@ -64,6 +68,14 @@ public class Book {
         }
         return "Book#" + this.number + "::" + this.name + "::" + this.datePublished.toString() + "::" + status;
     }
+
+    /**
+     * Compares the dates between 2 books
+     *
+     * @param book - book
+     * @return true if the book we are calling the method on
+     * is earlier that the param book, false otherwise
+     */
 
     public boolean compareDates(Book book){
         Date book1Date = this.datePublished;
@@ -88,13 +100,33 @@ public class Book {
         }
     }
 
+    /**
+     * Toggles the checkedOut field of a book.
+     * Invoked when client requests to
+     * check out or return a book.
+     */
+
     public void toggleStatus(){
         this.checkedOut = !this.checkedOut;
     }
 
+    /**
+     * Returns the value of the checkedOut instance variable
+     *
+     * @return true if the book is currently checked out,
+     *         false otherwise
+     */
+
     public boolean getStatus(){
         return this.checkedOut;
     }
+
+    /**
+     * Returns the serial Number of a book as an integer
+     *
+     * @return integer value that is greater than or
+     *         equal to 10001
+     */
 
     public int getSerialNumber(){
         return Integer.parseInt(this.number);
