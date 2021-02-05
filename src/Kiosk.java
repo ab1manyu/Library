@@ -1,16 +1,31 @@
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+/**
+ * A class that drives the entire program
+ * and takes in all the command line arguments
+ * from the client
+ *
+ * @author Abimanyu Ananthu, Ashish Shenoy
+ */
+
 public class Kiosk {
     public static final int ADD_BOOK_ARGUMENTS = 2;
+
+    /**
+     * Runs the program by taking in the user's
+     * command line arguments/requests and responding
+     * with the appropriate results.
+     *
+     */
 
     public void run() {
         boolean running = true;
         Library library = new Library();
         System.out.println("Library Kiosk running.");
         while(running){
-            Scanner s = new Scanner(System.in);  // Create a Scanner object
-            String sline = s.nextLine();  // Read user input
+            Scanner s = new Scanner(System.in); // Create a Scanner object
+            String sline = s.nextLine(); // Read user input
             try {
                 StringTokenizer input = new StringTokenizer(sline, ",");
 
@@ -85,21 +100,27 @@ public class Kiosk {
                         break;
 
                     case "PA":
-                        if (library.getNumBooks() > 0)
+                        if (library.getNumBooks() > 0) {
+                            System.out.println("**List of books in the library.");
                             library.print();
-                        else
+                            System.out.println("**End of list.");
+                        }else
                             System.out.println("Bookshelf is empty!");
                         break;
                     case "PD":
-                        if (library.getNumBooks() > 0)
+                        if (library.getNumBooks() > 0) {
+                            System.out.println("**List of books in the library.");
                             library.printByDate();
-                        else
+                            System.out.println("**End of list.");
+                        }else
                             System.out.println("Bookshelf is empty!");
                         break;
                     case "PN":
-                        if (library.getNumBooks() > 0)
+                        if (library.getNumBooks() > 0) {
+                            System.out.println("**List of books in the library.");
                             library.printByNumber();
-                        else
+                            System.out.println("**End of list.");
+                        }else
                             System.out.println("Bookshelf is empty!");
                         break;
 
@@ -113,7 +134,7 @@ public class Kiosk {
                         break;
                 }
             }catch (Exception e){
-               continue;
+                continue;
             }
         }
     }
