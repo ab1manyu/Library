@@ -10,12 +10,16 @@ import java.util.StringTokenizer;
  */
 
 public class Kiosk {
+
     public static final int ADD_BOOK_ARGUMENTS = 2;
+    public static final int SERIAL_NUMBER_ARGUMENT = 1;
+
 
     /**
      * Runs the program by taking in the user's
      * command line arguments/requests and responding
-     * with the appropriate results.
+     * with the appropriate results. Will quit the session
+     * once client enters 'Q' to safely exit.
      *
      */
 
@@ -52,7 +56,7 @@ public class Kiosk {
 
                         break;
                     case "R":
-                        if (input.countTokens() == 1) {
+                        if (input.countTokens() == SERIAL_NUMBER_ARGUMENT) {
                             String serialNumber = input.nextToken();
                             try {
                                 library.remove(library.findBook(serialNumber));
@@ -63,7 +67,7 @@ public class Kiosk {
                         }
                         break;
                     case "O":
-                        if (input.countTokens() == 1) {
+                        if (input.countTokens() == SERIAL_NUMBER_ARGUMENT) {
                             String serialNumber = input.nextToken();
                             try {
                                 Book target = library.findBook(serialNumber);
@@ -81,7 +85,7 @@ public class Kiosk {
                         }
                         break;
                     case "I":
-                        if (input.countTokens() == 1) {
+                        if (input.countTokens() == SERIAL_NUMBER_ARGUMENT) {
                             String serialNumber = input.nextToken();
                             try {
                                 Book target = library.findBook(serialNumber);
