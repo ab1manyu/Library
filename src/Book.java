@@ -4,7 +4,6 @@
  the book, check out status, and the date its been published.
  * @author Abimanyu Ananthu, Ashish Shenoy
  */
-
 public class Book {
 
     private String number; //a 5-digit serial number unique to the book
@@ -14,7 +13,6 @@ public class Book {
 
     private static String serialNumber = "10001";
 
-
     /**
      * Constructor that creates an instance of the book class.
      * Upon instantiation, checkedOut and serialNumber are
@@ -23,8 +21,7 @@ public class Book {
      * @param name - name of the book
      * @param datePublished - Date object showing the books publish date
      */
-
-    public Book(String name, Date datePublished){
+    public Book(String name, Date datePublished) {
         this.number = Book.serialNumber;
         this.name = name;
         this.checkedOut = false;
@@ -33,20 +30,18 @@ public class Book {
         int intSerialNumber = Integer.parseInt(serialNumber);
         intSerialNumber = intSerialNumber + 1;
         Book.serialNumber = Integer.toString(intSerialNumber);
-
     }
 
     /**
      * Compares two books' serial number and returns either true
      * or false depending on the result.
      *
-     * @param obj
+     * @param obj the Book we are comparing
      * @return true if the books have the same serial number
-     *         false otherwise
+     * false otherwise
      */
-
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         Book book = (Book) obj;
         return this.number.equals(book.number);
     }
@@ -61,9 +56,9 @@ public class Book {
     @Override
     public String toString() {
         String status;
-        if(this.checkedOut){
+        if (this.checkedOut) {
             status = "is checked out";
-        }else{
+        } else {
             status = "is available";
         }
         return "Book#" + this.number + "::" + this.name + "::" + this.datePublished.toString() + "::" + status;
@@ -76,25 +71,24 @@ public class Book {
      * @return true if the book we are calling the method on
      * is earlier that the param book, false otherwise
      */
-
-    public boolean compareDates(Book book){
+    public boolean compareDates(Book book) {
         Date book1Date = this.datePublished;
         Date book2Date = book.datePublished;
 
-        if(book1Date.getYear() < book2Date.getYear()){
+        if (book1Date.getYear() < book2Date.getYear()) {
             return true;
-        }else{
-            if(book1Date.getYear() == book2Date.getYear()){
-                if(book1Date.getMonth() < book2Date.getMonth()){
+        } else {
+            if (book1Date.getYear() == book2Date.getYear()) {
+                if (book1Date.getMonth() < book2Date.getMonth()) {
                     return true;
-                }else{
-                    if (book1Date.getMonth() == book2Date.getMonth()){
+                } else {
+                    if (book1Date.getMonth() == book2Date.getMonth()) {
                         return book1Date.getDay() < book2Date.getDay();
-                    }else{
+                    } else {
                         return false;
                     }
                 }
-            }else{
+            } else {
                 return false;
             }
         }
@@ -102,11 +96,9 @@ public class Book {
 
     /**
      * Toggles the checkedOut field of a book.
-     * Invoked when client requests to
-     * check out or return a book.
+     * Invoked when client requests to check out or return a book.
      */
-
-    public void toggleStatus(){
+    public void toggleStatus() {
         this.checkedOut = !this.checkedOut;
     }
 
@@ -114,10 +106,9 @@ public class Book {
      * Returns the value of the checkedOut instance variable
      *
      * @return true if the book is currently checked out,
-     *         false otherwise
+     * false otherwise
      */
-
-    public boolean getStatus(){
+    public boolean getStatus() {
         return this.checkedOut;
     }
 
@@ -125,10 +116,9 @@ public class Book {
      * Returns the serial Number of a book as an integer
      *
      * @return integer value that is greater than or
-     *         equal to 10001
+     * equal to 10001
      */
-
-    public int getSerialNumber(){
+    public int getSerialNumber() {
         return Integer.parseInt(this.number);
     }
 

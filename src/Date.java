@@ -2,13 +2,12 @@ import java.util.Calendar;
 import java.util.StringTokenizer;
 
 /**
- * A class that stores information about a single book.
- * This information includes a serial number, the name of
- * the book, check out status, and the date its been published.
+ * A class that stores the date based off an input string.
  *
+ * We break down the string and save the year, the month, and
+ * the day within the respective instance variables.
  * @author Abimanyu Ananthu, Ashish Shenoy
  */
-
 public class Date {
     private int year;
     private int month;
@@ -29,7 +28,6 @@ public class Date {
      *
      * @param date - a string in the form mm/dd/yyyy
      */
-
     public Date(String date) {
         StringTokenizer st = new StringTokenizer(date, "/");
         this.month = Integer.parseInt(st.nextToken());
@@ -43,7 +41,6 @@ public class Date {
      * In the event the user doesn't specify a string,
      * this constructor will run
      */
-
     public Date() {
         Calendar rightNow = Calendar.getInstance();
         this.year = rightNow.get(Calendar.YEAR);
@@ -56,7 +53,7 @@ public class Date {
      *
      * @return integer value representing the year of the date
      */
-    public int getYear(){
+    public int getYear() {
         return this.year;
     }
 
@@ -65,8 +62,7 @@ public class Date {
      *
      * @return integer value representing the month of the date
      */
-
-    public int getMonth(){
+    public int getMonth() {
         return this.month;
     }
 
@@ -75,11 +71,9 @@ public class Date {
      *
      * @return integer value representing the day of the date
      */
-
-    public int getDay(){
+    public int getDay() {
         return this.day;
     }
-
     /**
      * Checks if the date is valid and greater than
      * 1900 while taking into account of leap years
@@ -90,7 +84,7 @@ public class Date {
     public boolean isValid() {
         boolean lessThanCurrDate = !this.greaterThanCurrDate();
         boolean dayValidator = this.dayValidator();
-        boolean publishedAfter1900 =  this.year > OLD_BOOK;
+        boolean publishedAfter1900 = this.year > OLD_BOOK;
 
         return lessThanCurrDate && dayValidator && publishedAfter1900;
     }
@@ -100,14 +94,14 @@ public class Date {
      *
      * @return true if the date is in a leap year, false otherwise
      */
-    private boolean isLeapYear(){
-        if(this.year % QUADRENNIAL == 0){
-            if(this.year % CENTENNIAL == 0){
+    private boolean isLeapYear() {
+        if (this.year % QUADRENNIAL == 0) {
+            if (this.year % CENTENNIAL == 0) {
                 return this.year % QUATERCENTENNIAL == 0;
-            }else{
+            } else {
                 return true;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -117,41 +111,42 @@ public class Date {
      * taking into account of leap years as well.
      *
      * @return true if the day is within the range of the given month,
-     *         false otherwise.
+     * false otherwise.
      */
-    private boolean dayValidator(){
+    private boolean dayValidator() {
         int month = this.month;
         int day = this.day;
         boolean day31 = false;
 
-        if(day>MONTH_END || day<1)
+        if (day > MONTH_END || day < 1)
             return false;
 
-        switch(month){
-            case Calendar.JANUARY+1:
-            case Calendar.MARCH+1:
-            case Calendar.MAY+1:
-            case Calendar.OCTOBER+1:
-            case Calendar.JULY+1:
-            case Calendar.AUGUST+1:
-            case Calendar.DECEMBER+1:
-                day31=true;
+        switch (month) {
+            case Calendar.JANUARY + 1:
+            case Calendar.MARCH + 1:
+            case Calendar.MAY + 1:
+            case Calendar.OCTOBER + 1:
+            case Calendar.JULY + 1:
+            case Calendar.AUGUST + 1:
+            case Calendar.DECEMBER + 1:
+                day31 = true;
                 break;
 
-            case Calendar.FEBRUARY+1:
-                if(this.day >= MONTH_END-1) //in the case of FEB the day cannot be 30 or greater
+            case Calendar.FEBRUARY + 1:
+                if (this.day >= MONTH_END - 1) //in the case of FEB the day cannot be 30 or greater
                     return false;
-                if(this.isLeapYear() && this.day == FEBRUARY_LEAP)
+                if (this.isLeapYear() && this.day == FEBRUARY_LEAP)
                     return true;
                 return this.day < FEBRUARY_LEAP;
 
-            case Calendar.APRIL+1:
-            case Calendar.JUNE+1:
-            case Calendar.SEPTEMBER+1:
-            case Calendar.NOVEMBER+1:
+            case Calendar.APRIL + 1:
+            case Calendar.JUNE + 1:
+            case Calendar.SEPTEMBER + 1:
+            case Calendar.NOVEMBER + 1:
                 break;
             //case that the month is just not one of the above (1-12)
-            default: return false;
+            default:
+                return false;
         }
 
         return day31 || this.day != MONTH_END;
@@ -164,23 +159,22 @@ public class Date {
      * @return true if the date is not greater than the current date,
      *         false otherwise.
      */
-
-    private boolean greaterThanCurrDate(){
+    private boolean greaterThanCurrDate() {
         Date currDate = new Date();
-        if(this.year > currDate.year){
+        if (this.year > currDate.year) {
             return true;
-        }else{
-            if(this.year == currDate.year){
-                if(this.month > currDate.month){
+        } else {
+            if (this.year == currDate.year) {
+                if (this.month > currDate.month) {
                     return true;
-                }else{
-                    if (this.month == currDate.month){
+                } else {
+                    if (this.month == currDate.month) {
                         return this.day > currDate.day;
-                    }else{
+                    } else {
                         return false;
                     }
                 }
-            }else{
+            } else {
                 return false;
             }
         }
@@ -191,15 +185,59 @@ public class Date {
      *
      * @return String representing the date object
      */
-
-    public String toString(){
+    public String toString() {
         return this.month + "/" + this.day + "/" + this.year;
     }
 
+    /**
+     * Testbed main to exercise the isValid() method in this class.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
-        Date date = new Date();
-        Date anotherDate = new Date("02/1/2021");
+        // Testing the isValid Method
 
-        System.out.println("The date "+anotherDate.toString()+" is: "+anotherDate.isValid());
+        // Test Case #1, checking invalid month.
+        System.out.println("Running Test Case#1");
+        Date tCase1 = new Date("13/1/2000");
+        if(!tCase1.isValid()) System.out.println("Test Case#1, checking a date with invalid month. Passed");
+        else System.out.println("Test Case#1, checking a date with invalid month. Failed");
+
+        // Test Case #2, checking 02/29 on a non-leap year.
+        System.out.println("Running Test Case#2");
+        Date tCase2 = new Date("2/29/2021");
+        if(!tCase2.isValid()) System.out.println("Test Case#2, checking a date with invalid month. Passed");
+        else System.out.println("Test Case#2, checking a date with invalid month. Failed");
+
+        // Test Case #3, testing day=31 on a 30-day month.
+        System.out.println("Running Test Case#3");
+        Date tCase3 = new Date("4/31/2009");
+        if(!tCase3.isValid()) System.out.println("Test Case#3, checking a date with invalid month. Passed");
+        else System.out.println("Test Case#3, checking a date with invalid month. Failed");
+
+        // Test Case #4, checking a date before 1900.
+        System.out.println("Running Test Case#4");
+        Date tCase4 = new Date("3/31/1800");
+        if(!tCase4.isValid()) System.out.println("Test Case#4, checking a date before 1900. Passed");
+        else System.out.println("Test Case#4, checking a date before 1900.  Failed");
+
+        // Test Case #5, checking invalid day.
+        System.out.println("Running Test Case#5");
+        Date tCase5 = new Date("4/31/2009");
+        if(!tCase5.isValid()) System.out.println("Test Case#5, checking a date with invalid day. Passed");
+        else System.out.println("Test Case#5, checking a date with invalid day. Failed");
+
+        // Test Case#6, checking a date in the future.
+        System.out.println("Running Test Case#6");
+        Date tCase6 = new Date("4/31/2109");
+        if(!tCase6.isValid()) System.out.println("Test Case#6, checking a date in the future. Passed");
+        else System.out.println("Test Case#6, checking a date in the future. Failed");
+
+        // Test Case#7, checking a correct date.
+        System.out.println("Running Test Case#7");
+        Date tCase7 = new Date("4/30/2019");
+        if(tCase7.isValid()) System.out.println("Test Case#7, checking a normal date. Passed");
+        else System.out.println("Test Case#7, checking a normal date. Failed");
+
     }
 }
