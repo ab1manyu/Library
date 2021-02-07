@@ -4,20 +4,8 @@
 
 Read the below but read this line first: don't steal my project! >:(
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Don't hack into my project. Instead, kindly let me know that there is a breakin point in the code and I'll probably not believe you 
+beacuse this project does not do anything other than its intended function.
