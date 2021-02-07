@@ -93,9 +93,9 @@ public class Kiosk {
                                     if (library.returns(target))
                                         System.out.println("Book#"+ serialNumber +" return has completed. Thanks!");
                                     else
-                                        System.out.println("Unable to return Book#" + serialNumber);
+                                        System.out.println("Unable to return Book#" + serialNumber + ".");
                                 } else
-                                    System.out.println("Unable to return Book#" + serialNumber);
+                                    System.out.println("Unable to return Book#" + serialNumber + ".");
 
                             } catch (Exception e) {
                                 System.out.println("Invalid Command!");
@@ -109,23 +109,23 @@ public class Kiosk {
                             library.print();
                             System.out.println("**End of list.");
                         }else
-                            System.out.println("Bookshelf is empty!");
+                            System.out.println("Library catalog is empty!");
                         break;
                     case "PD":
                         if (library.getNumBooks() > 0) {
-                            System.out.println("**List of books in the library.");
+                            System.out.println("**List of books by the dates published.");
                             library.printByDate();
                             System.out.println("**End of list.");
                         }else
-                            System.out.println("Bookshelf is empty!");
+                            System.out.println("Library catalog is empty!");
                         break;
                     case "PN":
                         if (library.getNumBooks() > 0) {
-                            System.out.println("**List of books in the library.");
+                            System.out.println("**List of books by the book numbers.");
                             library.printByNumber();
                             System.out.println("**End of list.");
                         }else
-                            System.out.println("Bookshelf is empty!");
+                            System.out.println("Library catalog is empty!");
                         break;
 
                     case "Q":
