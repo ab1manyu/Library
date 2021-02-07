@@ -223,7 +223,7 @@ public class Date {
 
         // Test Case #5, checking invalid day.
         System.out.println("Running Test Case#5");
-        Date tCase5 = new Date("4/31/2009");
+        Date tCase5 = new Date("4/32/2009");
         if(!tCase5.isValid()) System.out.println("Test Case#5, checking a date with invalid day. Passed");
         else System.out.println("Test Case#5, checking a date with invalid day. Failed");
 
