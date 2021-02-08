@@ -198,40 +198,70 @@ public class Date {
         // Testing the isValid Method
 
         // Test Case #1, checking invalid month.
-        System.out.println("Running Test Case#1");
-        Date tCase1 = new Date("13/1/2000");
-        if(!tCase1.isValid()) System.out.println("Test Case#1, checking a date with invalid month. Passed");
-        else System.out.println("Test Case#1, checking a date with invalid month. Failed");
+        System.out.println("Running Test Case#1a");
+        Date tCase1a = new Date("13/1/2000");
+        if(!tCase1a.isValid()) System.out.println("Test Case#1a, checking a date with invalid month. Passed");
+        else System.out.println("Test Case#1a, checking a date with invalid month. Failed");
+        
+        System.out.println("Running Test Case#1b");
+        Date tCase1b = new Date("12/1/2000");
+        if(tCase1b.isValid()) System.out.println("Test Case#1b, checking a date with valid month. Passed");
+        else System.out.println("Test Case#1b, checking a date with valid month. Failed");
 
         // Test Case #2, checking 02/29 on a non-leap year.
         System.out.println("Running Test Case#2");
-        Date tCase2 = new Date("2/29/2021");
-        if(!tCase2.isValid()) System.out.println("Test Case#2, checking a date with invalid month. Passed");
-        else System.out.println("Test Case#2, checking a date with invalid month. Failed");
+        Date tCase2a = new Date("2/29/2019");
+        if(!tCase2a.isValid()) System.out.println("Test Case#2a, checking a date with 02/29 on a non-leap year. Passed");
+        else System.out.println("Test Case#2a, checking a date 02/29 on a non-leap year. Failed");
+        
+        System.out.println("Running Test Case#2b");
+        Date tCase2b = new Date("2/29/2020");
+        if(tCase2b.isValid()) System.out.println("Test Case#2b, checking a date with 02/29 on a leap year. Passed");
+        else System.out.println("Test Case#2b, checking a date with 02/29 on a leap year. Failed");
+        
+        // Test Case #3, checking a date before 1900.
+        System.out.println("Running Test Case#3a");
+        Date tCase3a = new Date("3/31/1800");
+        if(!tCase3a.isValid()) System.out.println("Test Case#3a, checking a date before 1900. Passed");
+        else System.out.println("Test Case#3a, checking a date before 1900. Failed");
+        
+        System.out.println("Running Test Case#3b");
+        Date tCase3b = new Date("3/31/1950");
+        if(tCase3b.isValid()) System.out.println("Test Case#3b, checking a date after 1900. Passed");
+        else System.out.println("Test Case#3b, checking a date after 1900. Failed");
+        
+        // Test Case #4, checking invalid day.
+        System.out.println("Running Test Case#4a");
+        Date tCase4a = new Date("4/-15/2009");
+        if(!tCase4a.isValid()) System.out.println("Test Case#4a, checking a date with invalid day. Passed");
+        else System.out.println("Test Case#4a, checking a date with invalid day. Failed");
+        
+        System.out.println("Running Test Case#4b");
+        Date tCase4b = new Date("4/15/2009");
+        if(tCase4b.isValid()) System.out.println("Test Case#4b, checking a date with valid day. Passed");
+        else System.out.println("Test Case#4b, checking a date with valid day. Failed");
 
-        // Test Case #3, testing day=31 on a 30-day month.
-        System.out.println("Running Test Case#3");
-        Date tCase3 = new Date("4/31/2009");
-        if(!tCase3.isValid()) System.out.println("Test Case#3, checking a date with invalid month. Passed");
-        else System.out.println("Test Case#3, checking a date with invalid month. Failed");
-
-        // Test Case #4, checking a date before 1900.
-        System.out.println("Running Test Case#4");
-        Date tCase4 = new Date("3/31/1800");
-        if(!tCase4.isValid()) System.out.println("Test Case#4, checking a date before 1900. Passed");
-        else System.out.println("Test Case#4, checking a date before 1900.  Failed");
-
-        // Test Case #5, checking invalid day.
-        System.out.println("Running Test Case#5");
-        Date tCase5 = new Date("4/32/2009");
-        if(!tCase5.isValid()) System.out.println("Test Case#5, checking a date with invalid day. Passed");
-        else System.out.println("Test Case#5, checking a date with invalid day. Failed");
+        // Test Case #5, testing day=31 on a 30-day month.
+        System.out.println("Running Test Case#5a");
+        Date tCase5a = new Date("4/31/2009");
+        if(!tCase5a.isValid()) System.out.println("Test Case#5a, testing day=31 on a 30-day month. Passed");
+        else System.out.println("Test Case#5a,testing day=31 on a 30-day month. Failed");
+        
+        System.out.println("Running Test Case#5b");
+        Date tCase5b = new Date("5/31/2009");
+        if(tCase5b.isValid()) System.out.println("Test Case#5b, testing day=31 on a 31-day month. Passed");
+        else System.out.println("Test Case#5b, testing day=31 on a 31-day month. Failed");
 
         // Test Case#6, checking a date in the future.
-        System.out.println("Running Test Case#6");
-        Date tCase6 = new Date("4/31/2109");
-        if(!tCase6.isValid()) System.out.println("Test Case#6, checking a date in the future. Passed");
-        else System.out.println("Test Case#6, checking a date in the future. Failed");
+        System.out.println("Running Test Case#6a");
+        Date tCase6a = new Date("4/30/2109");
+        if(!tCase6a.isValid()) System.out.println("Test Case#6a, checking a date in the future. Passed");
+        else System.out.println("Test Case#6a, checking a date in the future. Failed");
+        
+        System.out.println("Running Test Case#6b");
+        Date tCase6b = new Date("4/30/1909");
+        if(tCase6b.isValid()) System.out.println("Test Case#6b, checking a date that has occurred, but after 1900. Passed");
+        else System.out.println("Test Case#6b, checking a date that has occurred, but after 1900. Failed");
 
         // Test Case#7, checking a correct date.
         System.out.println("Running Test Case#7");
