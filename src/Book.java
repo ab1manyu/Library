@@ -121,13 +121,4 @@ public class Book {
     public int getSerialNumber() {
         return Integer.parseInt(this.number);
     }
-
-
-    public static void main(String[] args) {
-        Book b1 = new Book("Hi", new Date());
-        System.out.println(b1);
-        Book b2 = new Book("Bye", new Date());
-        System.out.println(b2);
-
-    }
 }
