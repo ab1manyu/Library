@@ -209,23 +209,4 @@ public class Library {
             this.books[i] = temp;
         }
     }
-
-    public static void main(String[] args) {
-        Library l = new Library();
-
-        Book b1 = new Book("The Bible", new Date("09/29/2020"));
-        Book b2 = new Book("Quran", new Date("09/28/2020"));
-        Book b3 = new Book("Mahabharata", new Date("09/27/2020"));
-        Book b4 = new Book("Bhagavad Gita", new Date("09/26/2020"));
-
-        l.add(b1);
-        l.add(b2);
-        l.add(b3);
-        l.add(b4);
-
-        l.printByDate();
-        System.out.println();
-        l.printByNumber();
-
-    }
 }
